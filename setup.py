@@ -21,7 +21,7 @@ setup(
     author = "Giardi",                         
     description = "Grep for sensitive info",  
     packages = find_packages(),
-    py_modules = ["infogrep"],              
+    py_modules = ["infogrep","utils"],              
     entry_points = {                              
         'console_scripts': [
             'infogrep=infogrep:main',        
