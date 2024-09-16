@@ -34,7 +34,6 @@ if args.file:
 if args.directory:
     files2Scan += utils.get_all_abs_paths(args.directory)
 
-
 PatternName = args.pattern
 
 def main():

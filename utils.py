@@ -28,7 +28,8 @@ def file_to_list(filename: str) -> List[str] :
     except Exception as e:
         print(f'\nAn error occurred while tryin\' to open {filename}\n\n{e}')
 
-def get_all_abs_paths(file_or_directory: str) -> List[str]:
+def get_all_abs_paths(file_or_directory_raw: str) -> List[str]:
+    file_or_directory = file_or_directory_raw.split(',')
     file_paths = []
     try:
         # Check if it's a single file
