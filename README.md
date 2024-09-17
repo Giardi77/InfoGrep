@@ -21,7 +21,7 @@
 
     git clone https://github.com/yourusername/infogrep.git
     cd InfoGrep
-    sudo python3 setup.py install --user
+    python3 setup.py install --user
 
 ### Uninstall
 
