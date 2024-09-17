@@ -1,6 +1,5 @@
 import argparse
 import re
-import utils
 import sys
 import json
 import os
