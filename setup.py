@@ -10,13 +10,11 @@ def create_default_config():
     if not os.path.exists(config_file):
         os.makedirs(config_dir, exist_ok=True)
         default_patterns = {
-            "secrets": os.path.abspath("default-patterns/rules-stable.yml"),
-            "pii": os.path.abspath("default-patterns/pii-stable.yml")
+            "secrets": os.path.join(os.path.dirname(__file__), "default-patterns", "rules-stable.yml"),
+            "pii": os.path.join(os.path.dirname(__file__), "default-patterns", "pii-stable.yml")
         }
         with open(config_file, 'w') as f:
             json.dump(default_patterns, f, indent=2)
-
-create_default_config()
 
 setup(
     name="infogrep",
@@ -43,3 +41,5 @@ setup(
     ],
     python_requires=">=3.6",
 )
+
+create_default_config()
