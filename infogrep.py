@@ -5,6 +5,8 @@ import sys
 import json
 import os
 
+from . import utils
+
 parser = argparse.ArgumentParser(description="Grep for sensitive info")
 parser.add_argument('-i', '--input', help="file or directory to scan")
 parser.add_argument('-p', '--pattern', default='secrets', help="pick a pattern from .config/infogrep.json")

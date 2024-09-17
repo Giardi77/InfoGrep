@@ -18,10 +18,7 @@
 
 # Installation
 
-
-    git clone https://github.com/yourusername/infogrep.git
-    cd InfoGrep
-    python3 setup.py install --user
+    pip install git+https://github.com/giardino-io/infogrep.git
 
 ### Uninstall
 
