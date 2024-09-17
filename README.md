@@ -18,7 +18,7 @@
 
 # Installation
 
-    pip install git+https://github.com/giardino-io/infogrep.git
+    pip install git+https://github.com/Giardi77/infogrep.git
 
 ### Uninstall
 
