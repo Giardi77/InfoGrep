@@ -5,15 +5,6 @@ import json
 import pkg_resources
 from ._version import VERSION
 
-# Import the version from setup.py
-try:
-    from setuptools_scm import get_version
-    VERSION = get_version(root='..', relative_to=__file__)
-except ImportError:
-    try:
-        from infogrep._version import version as VERSION
-    except ImportError:
-        VERSION = "unknown"
 
 logo = rf'''
  █████               ██████             █████████                              
