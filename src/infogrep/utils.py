@@ -3,6 +3,7 @@ import os
 import yaml
 import json
 import pkg_resources
+from ._version import VERSION
 
 # Import the version from setup.py
 try:

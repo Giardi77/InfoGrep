@@ -3,31 +3,25 @@ import os
 import json
 import sys
 
-VERSION = "1.0.1"
+# Import version from _version.py
+sys.path.append('src/infogrep')
+from _version import VERSION
 
 def create_default_config():
     home_path = os.path.expanduser("~")
     config_dir = os.path.join(home_path, ".config")
     config_file = os.path.join(config_dir, "infogrep.patterns.json")
 
-    if not os.path.exists(config_file):
-        os.makedirs(config_dir, exist_ok=True)
-        default_patterns = {
-            "secrets": "default-patterns/rules-stable.yml",
-            "pii": "default-patterns/pii-stable.yml"
-        }
-        with open(config_file, 'w') as f:
-            json.dump(default_patterns, f, indent=2)
-    else:
-        # If the file exists, let's try to load it and re-save it to ensure proper formatting
-        try:
-            with open(config_file, 'r') as f:
-                existing_patterns = json.load(f)
-            with open(config_file, 'w') as f:
-                json.dump(existing_patterns, f, indent=2)
-        except json.JSONDecodeError:
-            print(f"Error: The existing {config_file} is not a valid JSON file. Please delete it and run the installation again.")
-            sys.exit(1)
+    os.makedirs(config_dir, exist_ok=True)
+    
+    # Always create a fresh config with default patterns
+    default_patterns = {
+        "secrets": "default-patterns/rules-stable.yml",
+        "pii": "default-patterns/pii-stable.yml"
+    }
+    
+    with open(config_file, 'w') as f:
+        json.dump(default_patterns, f, indent=2)
 
     print(f"Config file created/updated at: {config_file}")
 
@@ -60,4 +54,5 @@ setup(
     python_requires=">=3.6",
 )
 
+# Always run create_default_config() during setup
 create_default_config()
