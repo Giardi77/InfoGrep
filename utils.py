@@ -3,7 +3,7 @@ import os
 import yaml
 import json
 
-Version = '0.1'
+Version = '1.0'
 
 logo = rf'''
  █████               ██████             █████████                              
