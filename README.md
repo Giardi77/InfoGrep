@@ -6,7 +6,7 @@
   <a href="#Features">Features</a> •
   <a href="#Installation">Installation</a> •
   <a href="#Usage">Usage</a> •
-  <a href="#Contribute">Contribute to this project</a> •
+  <a href="#Contribute">Contribute to this project</a>
 </p>
 
 
