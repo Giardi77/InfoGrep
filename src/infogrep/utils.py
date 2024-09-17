@@ -91,10 +91,13 @@ def getPatterns(pattern_name):
 
     pattern_file = patterns_config[pattern_name]
     
-    if not os.path.exists(pattern_file):
-        raise FileNotFoundError(f"Pattern file not found: {pattern_file}")
+    # Use pkg_resources to get the correct path to the pattern file
+    pattern_file_path = pkg_resources.resource_filename('infogrep', pattern_file)
+    
+    if not os.path.exists(pattern_file_path):
+        raise FileNotFoundError(f"Pattern file not found: {pattern_file_path}")
 
-    with open(pattern_file, 'r') as f:
+    with open(pattern_file_path, 'r') as f:
         patterns = yaml.safe_load(f)
 
     return patterns
