@@ -67,7 +67,7 @@ def print_result(pattern: dict, result: str) -> tuple:
         confidence_color = RESET
 
     # Print with colors
-    print(f"\n[{name}] [{confidence_color}{confidence}{RESET}]\n\n{result}")
+    print(f"\n[{name}] [{confidence_color}{confidence}{RESET}]\n\n{result}\n")
 
 def getPatterns(pattern_name):
     config_file = os.path.expanduser("~/.config/infogrep.patterns.json")
