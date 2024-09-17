@@ -3,6 +3,8 @@ import os
 import json
 import sys
 
+VERSION = "1.0.1"
+
 def create_default_config():
     home_path = os.path.expanduser("~")
     config_dir = os.path.join(home_path, ".config")
@@ -11,8 +13,8 @@ def create_default_config():
     if not os.path.exists(config_file):
         os.makedirs(config_dir, exist_ok=True)
         default_patterns = {
-            "secrets": os.path.join(os.path.dirname(__file__), "default-patterns", "rules-stable.yml"),
-            "pii": os.path.join(os.path.dirname(__file__), "default-patterns", "pii-stable.yml")
+            "secrets": "default-patterns/rules-stable.yml",
+            "pii": "default-patterns/pii-stable.yml"
         }
         with open(config_file, 'w') as f:
             json.dump(default_patterns, f, indent=2)
@@ -31,7 +33,7 @@ def create_default_config():
 
 setup(
     name="infogrep",
-    version="1.0.1",
+    version=VERSION,
     author="Giardi",
     description="Grep for sensitive info",
     long_description=open("README.md").read(),
@@ -40,6 +42,9 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     include_package_data=True,
+    package_data={
+        "infogrep": ["../default-patterns/*.yml"],
+    },
     install_requires=[
         "pyyaml",
     ],

@@ -1,0 +1,3 @@
+include src/infogrep/default-patterns/*.yml
+include README.md
+include src/infogrep/*.py

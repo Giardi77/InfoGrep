@@ -2,8 +2,17 @@ from typing import List
 import os
 import yaml
 import json
+import pkg_resources
 
-Version = '1.0'
+# Import the version from setup.py
+try:
+    from setuptools_scm import get_version
+    VERSION = get_version(root='..', relative_to=__file__)
+except ImportError:
+    try:
+        from infogrep._version import version as VERSION
+    except ImportError:
+        VERSION = "unknown"
 
 logo = rf'''
  █████               ██████             █████████                              
@@ -16,7 +25,7 @@ logo = rf'''
 ░░░░░ ░░░░ ░░░░░  ░░░░░      ░░░░░░    ░░░░░░░░░  ░░░░░      ░░░░░░   ░███░░░  
                                                                       ░███     
                                                                       █████    
-                                                                     ░░░░░        by giardi ({Version})
+                                                                     ░░░░░        by giardi ({VERSION})
 '''
 
 def file_to_list(filename: str) -> List[str] :
