@@ -1445,10 +1445,6 @@ patterns:
       regex: zendesk_access_token
       confidence: high
   - pattern:
-      name: Generic - 1764
-      regex: ssh-rsa
-      confidence: high
-  - pattern:
       name: Generic - 1765
       regex: s3-[a-z0-9-]+\.amazonaws\.com/[a-z0-9._-]+
       confidence: low

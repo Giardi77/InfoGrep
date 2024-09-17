@@ -28,25 +28,19 @@ def file_to_list(filename: str) -> List[str] :
     except Exception as e:
         print(f'\nAn error occurred while tryin\' to open {filename}\n\n{e}')
 
-def get_all_abs_paths(file_or_directory_raw: str) -> List[str]:
-    file_or_directory = file_or_directory_raw.split(',')
+def get_all_abs_paths(file_or_directory: str) -> List[str]:
     file_paths = []
     try:
-        # Check if it's a single file
         if os.path.isfile(file_or_directory):
-            # Add the absolute path of the file
             file_paths.append(os.path.abspath(file_or_directory))
-
-        # If it's a directory
-        else:
+        elif os.path.isdir(file_or_directory):
             for root, dirs, files in os.walk(file_or_directory):
                 for file in files:
-                    # Get the absolute path of each file
                     absolute_path = os.path.abspath(os.path.join(root, file))
                     file_paths.append(absolute_path)
-        
+        else:
+            print(f"Error: {file_or_directory} is not a valid file or directory")
         return file_paths
-
     except Exception as e:
         print(f"Error: {e}")
         return []
@@ -59,7 +53,6 @@ RESET = '\033[0m'  # Reset color to default
 
 def print_result(pattern: dict, result: str) -> tuple:
     name = pattern['pattern']['name']
-    regex = pattern['pattern']['regex']
     confidence = pattern['pattern']['confidence']
 
     # Color based on confidence level
@@ -75,12 +68,24 @@ def print_result(pattern: dict, result: str) -> tuple:
     # Print with colors
     print(f"[{name}] [{confidence_color}{confidence}{RESET}]\n{result}\n")
 
-def getPatterns(name: str) -> dict:
-    home_path = os.path.expanduser("~")
+def getPatterns(pattern_name):
+    config_file = os.path.expanduser("~/.config/infogrep.patterns.json")
+    
+    if not os.path.exists(config_file):
+        raise FileNotFoundError(f"Config file not found: {config_file}")
 
-    with open(f"{home_path}/.config/infogrep.patterns.json", 'r') as json_file:
-        my_patterns = json.load(json_file)
-    with open(my_patterns[name], 'r') as file:
-        Patterns = yaml.safe_load(file)
+    with open(config_file, 'r') as f:
+        patterns_config = json.load(f)
 
-    return Patterns
+    if pattern_name not in patterns_config:
+        raise ValueError(f"Pattern '{pattern_name}' not found in config file")
+
+    pattern_file = patterns_config[pattern_name]
+    
+    if not os.path.exists(pattern_file):
+        raise FileNotFoundError(f"Pattern file not found: {pattern_file}")
+
+    with open(pattern_file, 'r') as f:
+        patterns = yaml.safe_load(f)
+
+    return patterns

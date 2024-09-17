@@ -35,13 +35,17 @@ Another pre-installed patterns yaml is the **'pii'**, containing a lot of regex 
 
 ## Examples
 
-Scan a files:
+Scan a file:
 
-    infogrep -f file1.txt,file2.js
+    infogrep -i file1.txt
 
 Scan a directory:
 
-    infogrep -d my_dir
+    infogrep -i my_dir
+
+Scan content from a pipe:
+
+    cat file.js | infogrep
 
 Add a custom pattern
 
