@@ -43,7 +43,7 @@ setup(
     packages=find_packages(where="src"),
     include_package_data=True,
     package_data={
-        "infogrep": ["../default-patterns/*.yml"],
+        "infogrep": ["default-patterns/*.yml"],
     },
     install_requires=[
         "pyyaml",
