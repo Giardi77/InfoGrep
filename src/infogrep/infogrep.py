@@ -36,11 +36,9 @@ def add_custom_pattern(name, path):
 
     print(f"Pattern '{name}' added successfully.")
 
-def greppin(content: str, pattern: dict) -> str | None:
-    matches = re.search(pattern['pattern']['regex'], content, re.MULTILINE)
-    if matches:
-        return matches.group()
-    return None
+def greppin(content: str, pattern: dict) -> list:
+    matches = re.finditer(pattern['pattern']['regex'], content, re.MULTILINE)
+    return [match.group() for match in matches]
 
 PatternName = args.pattern
 
@@ -65,18 +63,19 @@ def main():
                 with open(path, 'r') as file:
                     content = file.read()
                 for pattern in Patterns['patterns']:
-                    res = greppin(content, pattern)
-                    if res:
+                    results = greppin(content, pattern)
+                    if results:
                         print()  # Move to the next line before printing results
-                        utils.print_result(pattern, res)
+                        for res in results:
+                            utils.print_result(pattern, res)
             except Exception as e:
                 print(f"\nAn error occurred while processing {path}: {e}")
     else:
         # Read from stdin if no input file/directory is specified
         content = sys.stdin.read()
         for pattern in Patterns['patterns']:
-            res = greppin(content, pattern)
-            if res:
+            results = greppin(content, pattern)
+            for res in results:
                 utils.print_result(pattern, res)
 
     print()  # Print a newline at the end to move the cursor to the next line
