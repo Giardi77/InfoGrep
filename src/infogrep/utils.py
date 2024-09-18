@@ -53,7 +53,7 @@ BLUE = '\033[94m'
 RESET = '\033[0m'  # Reset color to default
 
 def print_result(pattern: dict, result: str, file_path: str, position: int):
-    confidence = pattern['pattern']['confidence']
+    confidence = pattern.get('pattern', {}).get('confidence', 'unknown')
     # Color based on confidence level
     if confidence == "high":
         confidence_color = RED
@@ -64,7 +64,8 @@ def print_result(pattern: dict, result: str, file_path: str, position: int):
     else:
         confidence_color = RESET
     
-    print(f"\n[{pattern['name']}] [{confidence_color}{confidence}{RESET}]\n\n{result}\n")
+    pattern_name = pattern.get('name', 'Unknown Pattern')
+    print(f"\n[{pattern_name}] [{confidence_color}{confidence}{RESET}]\n\n{result}\n")
     print(f"File: {file_path}")
     print(f"Position: {position}")
     print(f"Match:\n{result}\n")
