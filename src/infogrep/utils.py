@@ -64,11 +64,10 @@ def print_result(pattern: dict, result: str, file_path: str, position: int):
     else:
         confidence_color = RESET
     
-    pattern_name = pattern.get('name', 'Unknown Pattern')
+    pattern_name = pattern.get('pattern', {}).get('name', 'Unknown Pattern')
     print(f"\n[{pattern_name}] [{confidence_color}{confidence}{RESET}]\n\n{result}\n")
     print(f"File: {file_path}")
     print(f"Position: {position}")
-    print(f"Match:\n{result}\n")
 
 def getPatterns(pattern_name):
     config_file = os.path.expanduser("~/.config/infogrep.patterns.json")
