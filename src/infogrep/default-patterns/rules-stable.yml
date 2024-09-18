@@ -5,7 +5,7 @@ patterns:
       confidence: high
   - pattern:
       name: AWS API Gateway
-      regex: [0-9a-z]+.execute-api.[0-9a-z._-]+.amazonaws.com
+      regex: '[0-9a-z]+\.execute-api\.[0-9a-z._-]+\.amazonaws\.com'
       confidence: low
   - pattern:
       name: AWS API Key
