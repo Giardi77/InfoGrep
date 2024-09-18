@@ -38,7 +38,13 @@ def add_custom_pattern(name, path):
 
 def greppin(content: str, pattern: dict) -> list:
     matches = re.finditer(pattern['pattern']['regex'], content, re.MULTILINE)
-    return [match.group() for match in matches]
+    return [(match.group(), match.start()) for match in matches]  # Return match and its position
+
+def truncate_match(match: str, max_lines: int = 10) -> str:
+    lines = match.splitlines()
+    if len(lines) > max_lines:
+        return '\n'.join(lines[:max_lines]) + f"\n... (truncated, {len(lines) - max_lines} more lines)"
+    return match
 
 PatternName = args.pattern
 
@@ -66,8 +72,9 @@ def main():
                     results = greppin(content, pattern)
                     if results:
                         print()  # Move to the next line before printing results
-                        for res in results:
-                            utils.print_result(pattern, res)
+                        for res, pos in results:
+                            truncated_res = truncate_match(res)
+                            utils.print_result(pattern, truncated_res, path, pos)
             except Exception as e:
                 print(f"\nAn error occurred while processing {path}: {e}")
     else:
@@ -75,8 +82,9 @@ def main():
         content = sys.stdin.read()
         for pattern in Patterns['patterns']:
             results = greppin(content, pattern)
-            for res in results:
-                utils.print_result(pattern, res)
+            for res, pos in results:
+                truncated_res = truncate_match(res)
+                utils.print_result(pattern, truncated_res, "stdin", pos)
 
     print()  # Print a newline at the end to move the cursor to the next line
 
