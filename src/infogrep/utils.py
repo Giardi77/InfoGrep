@@ -52,10 +52,8 @@ YELLOW = '\033[93m'
 BLUE = '\033[94m'
 RESET = '\033[0m'  # Reset color to default
 
-def print_result(pattern: dict, result: str) -> tuple:
-    name = pattern['pattern']['name']
+def print_result(pattern: dict, result: str, file_path: str, position: int):
     confidence = pattern['pattern']['confidence']
-
     # Color based on confidence level
     if confidence == "high":
         confidence_color = RED
@@ -65,9 +63,11 @@ def print_result(pattern: dict, result: str) -> tuple:
         confidence_color = BLUE
     else:
         confidence_color = RESET
-
-    # Print with colors
-    print(f"\n[{name}] [{confidence_color}{confidence}{RESET}]\n\n{result}\n")
+    
+    print(f"\n[{pattern['name']}] [{confidence_color}{confidence}{RESET}]\n\n{result}\n")
+    print(f"File: {file_path}")
+    print(f"Position: {position}")
+    print(f"Match:\n{result}\n")
 
 def getPatterns(pattern_name):
     config_file = os.path.expanduser("~/.config/infogrep.patterns.json")
