@@ -77,7 +77,7 @@ def main():
         for pattern in Patterns['patterns']:
             res = greppin(content, pattern)
             if res:
-                utils.print_result(pattern, res, "stdin")
+                utils.print_result(pattern, res)
 
     print()  # Print a newline at the end to move the cursor to the next line
 
