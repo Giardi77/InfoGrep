@@ -8,8 +8,8 @@ from . import utils
 
 parser = argparse.ArgumentParser(description="Grep for sensitive info")
 parser.add_argument('-i', '--input', help="file or directory to scan")
-parser.add_argument('-p', '--pattern', default='secrets', help="pick a pattern from .config/infogrep.json")
-parser.add_argument('-a', '--add-pattern', help="add a pattern file to .config/infogrep.json (provide name:path [-a name:/path/to/pattern.yml])")
+parser.add_argument('-p', '--pattern', default='secrets', help="pick a pattern from .config/infogrep.patterns.json")
+parser.add_argument('-a', '--add-pattern', help="add a pattern file to .config/infogrep.patterns.json (provide name:path [-a name:/path/to/pattern.yml])")
 
 args = parser.parse_args()
 
