@@ -40,10 +40,10 @@ def greppin(content: str, pattern: dict) -> list:
     matches = re.finditer(pattern['pattern']['regex'], content, re.MULTILINE)
     return [(match.group(), match.start()) for match in matches]  # Return match and its position
 
-def truncate_match(match: str, max_lines: int = 10) -> str:
-    lines = match.splitlines()
-    if len(lines) > max_lines:
-        return '\n'.join(lines[:max_lines]) + f"\n... (truncated, {len(lines) - max_lines} more lines)"
+def truncate_match(match: str, max_chars: int = 300) -> str:
+    if len(match) > max_chars:
+        truncated = match[:max_chars]
+        return f"{truncated}... (truncated, {len(match) - max_chars} more characters)"
     return match
 
 PatternName = args.pattern

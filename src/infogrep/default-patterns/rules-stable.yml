@@ -1452,10 +1452,6 @@ patterns:
       name: Generic - 1765
       regex: s3-[a-z0-9-]+\.amazonaws\.com/[a-z0-9._-]+
       confidence: low
-#  - pattern:
-#      name: Generic Secret
-#      regex: '[sS][eE][cC][rR][eE][tT].*[''|"][0-9a-zA-Z]{32,45}[''|"]'
-#      confidence: low
   - pattern:
       name: Generic webhook secret
       regex: (webhook).+(secret|token|key).+
