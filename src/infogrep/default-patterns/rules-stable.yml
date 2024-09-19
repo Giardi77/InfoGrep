@@ -3654,10 +3654,6 @@ patterns:
       regex: aos[_-]?sec(=| =|:| :)
       confidence: low
   - pattern:
-      name: api_key
-      regex: api[_-]?key(=| =|:| :)
-      confidence: low
-  - pattern:
       name: api_key_secret
       regex: api[_-]?key[_-]?secret(=| =|:| :)
       confidence: low
