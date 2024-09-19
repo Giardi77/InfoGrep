@@ -1509,12 +1509,8 @@ patterns:
       regex: (?:getsandbox).{0,40}\b([a-z0-9-]{15,30})\b
       confidence: high
   - pattern:
-      name: GitHub
-      regex: '[gG][iI][tT][hH][uU][bB].*[''|"][0-9a-zA-Z]{35,40}[''|"]'
-      confidence: low
-  - pattern:
-      name: Github - 2
-      regex: \b((?:ghp|gho|ghu|ghs|ghr)_[a-zA-Z0-9]{36,255}\b)
+      name: GitHub Repository URL
+      regex: '(?:https?://)?github\.com/([a-zA-Z0-9-]+/[a-zA-Z0-9_.-]+)(?=["''\`\s\)\]]|$)'
       confidence: high
   - pattern:
       name: Github App Token

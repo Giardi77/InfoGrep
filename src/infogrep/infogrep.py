@@ -40,7 +40,7 @@ def greppin(content: str, pattern: dict) -> list:
     matches = re.finditer(pattern['pattern']['regex'], content, re.MULTILINE)
     return [(match.group(), match.start()) for match in matches]  # Return match and its position
 
-def truncate_match(match: str, max_chars: int = 300) -> str:
+def truncate_match(match: str, max_chars: int = 400) -> str:
     if len(match) > max_chars:
         truncated = match[:max_chars]
         return f"{truncated}... (truncated, {len(match) - max_chars} more characters)"
