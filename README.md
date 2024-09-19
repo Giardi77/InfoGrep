@@ -52,6 +52,10 @@ Scan with a custom pattern:
 
     infogrep -f file.js -p mypattern
 
+Some regex might suck and match a lot of shit, you can use -t flag to truncate the output and see more results at once (default is 400 chars, if you want to see the whole thing set -t 0):
+
+    infogrep -i my_dir -t 1000
+
 # Contribute
 
 if you find this tool helpfull and want to give a better/new regex or anything that can improve performace pull request will be welcomed!

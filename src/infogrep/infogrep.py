@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser(description="Grep for sensitive info")
 parser.add_argument('-i', '--input', help="file or directory to scan")
 parser.add_argument('-p', '--pattern', default='secrets', help="pick a pattern from .config/infogrep.patterns.json")
 parser.add_argument('-a', '--add-pattern', help="add a pattern file to .config/infogrep.patterns.json (provide name:path [-a name:/path/to/pattern.yml])")
+parser.add_argument('-t', '--truncate', type=int, default=400, help="Truncation length for output (0 for no truncation, default: 400)")
 
 args = parser.parse_args()
 
@@ -41,12 +42,12 @@ def greppin(content: str, pattern: dict) -> list:
     return [(match.group(), match.start()) for match in matches]  # Return match and its position
 
 def truncate_match(match: str, max_chars: int = 400) -> str:
-    if len(match) > max_chars:
-        truncated = match[:max_chars]
-        return f"{truncated}... (truncated, {len(match) - max_chars} more characters)"
-    return match
+    if max_chars == 0 or len(match) <= max_chars:
+        return match
+    return f"{match[:max_chars]}... (truncated, {len(match) - max_chars} more characters)"
 
 PatternName = args.pattern
+TruncateLength = args.truncate
 
 def main():
     if args.add_pattern:
@@ -73,7 +74,7 @@ def main():
                     if results:
                         print()  # Move to the next line before printing results
                         for res, pos in results:
-                            truncated_res = truncate_match(res)
+                            truncated_res = truncate_match(res, TruncateLength)
                             utils.print_result(pattern, truncated_res, path, pos)
             except Exception as e:
                 print(f"\nAn error occurred while processing {path}: {e}")
@@ -83,7 +84,7 @@ def main():
         for pattern in Patterns['patterns']:
             results = greppin(content, pattern)
             for res, pos in results:
-                truncated_res = truncate_match(res)
+                truncated_res = truncate_match(res, TruncateLength)
                 utils.print_result(pattern, truncated_res, "stdin", pos)
 
     print()  # Print a newline at the end to move the cursor to the next line
