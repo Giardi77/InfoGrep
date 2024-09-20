@@ -1,0 +1,2 @@
+Additional suggestions for even more efficiency:
+    - Study Aho-Corasick algorithm for multiple pattern matching.

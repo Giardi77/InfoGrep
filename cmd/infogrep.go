@@ -88,6 +88,7 @@ func worker(files <-chan string, results chan<- string, patterns []utils.Pattern
 }
 
 func Greppin(filePath string, results chan<- string, patterns []utils.Pattern, compiledPatterns []*regexp.Regexp, truncateFlag int) {
+	fmt.Println("Greppin", filePath)
 	file, err := os.Open(filePath)
 	if err != nil {
 		results <- fmt.Sprintf("Error opening file %s: %v\n", filePath, err)
