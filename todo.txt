@@ -1,6 +1,0 @@
-- fix the priting bugs (bullshit)
-- handle the non readable files (skip them)
-- clean patterns
-- add a switch for severity
-- add a switch for version
-

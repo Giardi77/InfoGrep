@@ -1,2 +1,0 @@
-include src/infogrep/default-patterns/*.yml
-include README.md
