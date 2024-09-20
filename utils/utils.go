@@ -1,9 +1,8 @@
 package utils
 
 import (
-	"bufio"
+	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 
@@ -36,12 +35,29 @@ type Config struct {
 	} `yaml:"patterns"`
 }
 
-func GetPatterns() ([]Pattern, error) {
-	patternsFile := filepath.Join("default-patterns", "patterns-stable.yml")
-	return readFile(patternsFile)
+func GetPatterns(patternType string) ([]Pattern, error) {
+	homeDir, _ := os.UserHomeDir()
+	configPath := filepath.Join(homeDir, ".config", "infogrep.patterns.json")
+
+	configData, err := os.ReadFile(configPath)
+	if err != nil {
+		return nil, fmt.Errorf("error reading config file: %v", err)
+	}
+
+	var config map[string]string
+	if err := json.Unmarshal(configData, &config); err != nil {
+		return nil, fmt.Errorf("error parsing config file: %v", err)
+	}
+
+	patternFile, ok := config[patternType]
+	if !ok {
+		return nil, fmt.Errorf("pattern type '%s' not found in config", patternType)
+	}
+
+	return readPatternsFile(patternFile)
 }
 
-func readFile(filename string) ([]Pattern, error) {
+func readPatternsFile(filename string) ([]Pattern, error) {
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
@@ -63,34 +79,39 @@ func readFile(filename string) ([]Pattern, error) {
 	return patterns, nil
 }
 
-func ReadInput(inputFlag string) (string, error) {
-	if inputFlag != "" {
-		content, err := os.ReadFile(inputFlag)
-		if err != nil {
-			return "", err
-		}
-		return string(content), nil
-	}
+func ReadInputFlag(inputFlag string) ([]string, error) {
 
-	info, err := os.Stdin.Stat()
+	absPath, err := filepath.Abs(inputFlag)
 	if err != nil {
-		return "", err
+		return nil, fmt.Errorf("error getting absolute path: %v", err)
 	}
 
-	if info.Mode()&os.ModeCharDevice != 0 || info.Size() <= 0 {
-		return "", fmt.Errorf("no input provided")
+	fileInfo, err := os.Stat(absPath)
+	if err != nil {
+		return nil, fmt.Errorf("error accessing input: %v", err)
 	}
 
-	reader := bufio.NewReader(os.Stdin)
-	var output []rune
+	if fileInfo.IsDir() {
+		return walkDirectory(absPath)
+	}
 
-	for {
-		input, _, err := reader.ReadRune()
-		if err != nil && err == io.EOF {
-			break
+	return []string{absPath}, nil
+}
+
+func walkDirectory(dir string) ([]string, error) {
+	var files []string
+	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
 		}
-		output = append(output, input)
-	}
-
-	return string(output), nil
+		if !info.IsDir() {
+			absPath, err := filepath.Abs(path)
+			if err != nil {
+				return fmt.Errorf("error getting absolute path for %s: %v", path, err)
+			}
+			files = append(files, absPath)
+		}
+		return nil
+	})
+	return files, err
 }
