@@ -1510,7 +1510,7 @@ patterns:
       confidence: high
   - pattern:
       name: GitHub Repository URL
-      regex: '(?:https?://)?github\.com/([a-zA-Z0-9-]+/[a-zA-Z0-9_.-]+)(?=["''\`\s\)\]]|$)'
+      regex: '(?:https?://)?github\.com/([a-zA-Z0-9-]+/[a-zA-Z0-9_.-]+)(?:["''\`\s\)\]]|$)'
       confidence: high
   - pattern:
       name: Github App Token
