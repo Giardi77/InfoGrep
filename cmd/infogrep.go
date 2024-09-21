@@ -55,10 +55,14 @@ func distributeAndProcess(files []string, patterns []utils.Pattern, truncateFlag
 	filesChan := make(chan string, len(files))
 	resultsChan := make(chan string, 1000)
 
-	// Precompile regex patterns
 	compiledPatterns := make([]*regexp.Regexp, len(patterns))
-	for i, pattern := range patterns {
-		compiledPatterns[i] = regexp.MustCompile(pattern.Regex)
+	for i, p := range patterns {
+		var err error
+		compiledPatterns[i], err = regexp.Compile(p.Regex)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error compiling regex for %s: %v\n", p.Name, err)
+			return
+		}
 	}
 
 	// Start worker goroutines
@@ -88,7 +92,6 @@ func worker(files <-chan string, results chan<- string, patterns []utils.Pattern
 }
 
 func Greppin(filePath string, results chan<- string, patterns []utils.Pattern, compiledPatterns []*regexp.Regexp, truncateFlag int) {
-	fmt.Println("Greppin", filePath)
 	file, err := os.Open(filePath)
 	if err != nil {
 		results <- fmt.Sprintf("Error opening file %s: %v\n", filePath, err)
@@ -99,7 +102,6 @@ func Greppin(filePath string, results chan<- string, patterns []utils.Pattern, c
 	reader := bufio.NewReaderSize(file, 4*1024*1024) // 4MB buffer
 	buffer := make([]byte, 4*1024*1024)
 	lineNum := 1
-	var partialLine []byte
 
 	for {
 		n, err := reader.Read(buffer)
@@ -109,13 +111,7 @@ func Greppin(filePath string, results chan<- string, patterns []utils.Pattern, c
 		}
 
 		chunk := buffer[:n]
-		lines := bytes.Split(append(partialLine, chunk...), []byte("\n"))
-		partialLine = nil
-
-		if err != io.EOF {
-			partialLine = lines[len(lines)-1]
-			lines = lines[:len(lines)-1]
-		}
+		lines := bytes.Split(chunk, []byte("\n"))
 
 		for _, line := range lines {
 			for i, re := range compiledPatterns {
@@ -125,7 +121,8 @@ func Greppin(filePath string, results chan<- string, patterns []utils.Pattern, c
 					if truncateFlag > 0 && len(output) > truncateFlag {
 						output = output[:truncateFlag] + "..."
 					}
-					results <- fmt.Sprintf("%s:%d: Found %s (Confidence: %s): %s\n", filePath, lineNum, patterns[i].Name, patterns[i].Confidence, output)
+					results <- fmt.Sprintf("%s:%d: Found %s (Confidence: %s): %s\n",
+						filePath, lineNum, patterns[i].Name, patterns[i].Confidence, output)
 				}
 			}
 			lineNum++
