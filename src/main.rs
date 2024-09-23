@@ -3,6 +3,8 @@ mod scanner;
 mod utils;
 use anyhow::Result;
 use rayon::prelude::*; // Import ParallelIterator trait
+use std::collections::HashSet;
+use std::sync::{Arc, Mutex};
 use std::time::Instant;
 use utils::{
     create_default_config, get_files_to_scan, get_pattern_file, load_patterns, print_logo,
@@ -34,7 +36,6 @@ struct Args {
 
 fn main() -> Result<()> {
     let args = Args::parse();
-
     print_logo();
 
     // Create default config file if it doesn't exist
@@ -75,8 +76,15 @@ fn main() -> Result<()> {
         .num_threads(args.workers)
         .build_global()?;
 
+    let found_matches = Arc::new(Mutex::new(HashSet::new()));
+
     files_to_scan.par_iter().for_each(|file| {
-        if let Err(e) = scanner::scan_file(file, &compiled_patterns, args.truncate) {
+        if let Err(e) = scanner::scan_file(
+            file,
+            &compiled_patterns,
+            args.truncate,
+            Arc::clone(&found_matches),
+        ) {
             eprintln!("Error scanning file {}: {}", file.display(), e);
         }
     });

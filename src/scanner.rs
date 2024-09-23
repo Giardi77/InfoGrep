@@ -1,9 +1,12 @@
 use crate::utils::truncate_string;
+use anyhow::Result;
 use colored::*;
 use regex::Regex;
+use std::collections::HashSet;
 use std::fs::File;
 use std::io::{Read, Seek, SeekFrom};
 use std::path::Path;
+use std::sync::{Arc, Mutex};
 
 pub struct CompiledPattern {
     pub regex: Regex,
@@ -30,7 +33,8 @@ pub fn scan_file(
     file_path: &Path,
     compiled_patterns: &[CompiledPattern],
     truncate: usize,
-) -> Result<(), Box<dyn std::error::Error>> {
+    found_matches: Arc<Mutex<HashSet<String>>>,
+) -> Result<()> {
     let mut file = File::open(file_path)?;
     let file_size = file.metadata()?.len();
     let chunk_size: u64 = 1024 * 1024; // 1MB chunks
@@ -70,9 +74,13 @@ pub fn scan_file(
                     _ => pattern.confidence.normal(),
                 };
 
-                println!("[{}] (position: {})", file_path.display(), approx_line);
-                println!("[{}] [{}]", pattern.name, confidence_colored);
-                println!("\n{}\n", truncated_match);
+                let mut found_matches = found_matches.lock().unwrap();
+                if !found_matches.contains(matched) {
+                    found_matches.insert(matched.to_string());
+                    println!("[{}] (position: {})", file_path.display(), approx_line);
+                    println!("[{}] [{}]", pattern.name, confidence_colored);
+                    println!("\n{}\n", truncated_match);
+                }
             }
         }
 
