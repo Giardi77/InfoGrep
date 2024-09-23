@@ -35,7 +35,7 @@ struct Args {
 fn main() -> Result<()> {
     let args = Args::parse();
 
-    utils::print_logo();
+    print_logo();
 
     // Create default config file if it doesn't exist
     create_default_config()?;
