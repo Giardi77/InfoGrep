@@ -1,6 +1,7 @@
 use clap::Parser;
 mod scanner;
 mod utils;
+use anyhow::Result;
 use rayon::prelude::*; // Import ParallelIterator trait
 use std::time::Instant;
 use utils::{
@@ -8,7 +9,7 @@ use utils::{
 };
 
 #[derive(Parser, Debug)]
-#[command(name = "InfoGrep", about = "Grep for sensitive info", long_about = None, version = env!("CARGO_PKG_VERSION"))]
+#[command(name = "InfoGrep", about = "Grep for sensitive info", long_about = None, version = clap::crate_version!())]
 struct Args {
     /// Input file or directory
     #[arg(short, long, value_name = "INPUT")]
@@ -16,7 +17,7 @@ struct Args {
 
     /// Pattern to use
     #[arg(short, long, value_name = "PATTERN", default_value = "secrets")]
-    pattern_name: String,
+    pattern: String,
 
     /// Truncate output to this many characters
     #[arg(short, long, value_name = "TRUNCATE", default_value = "400")]
@@ -25,20 +26,42 @@ struct Args {
     /// Number of worker threads to use
     #[arg(short, long, value_name = "WORKERS", default_value = "2")]
     workers: usize,
+
+    /// Confidence level to use
+    #[arg(short, long, value_name = "CONFIDENCE", default_value = "medium")]
+    confidence: String,
 }
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<()> {
     let args = Args::parse();
-    print_logo();
 
+    utils::print_logo();
+
+    // Create default config file if it doesn't exist
     create_default_config()?;
 
     // Start the timer
     let start = Instant::now();
 
-    let pattern_file = get_pattern_file(&args.pattern_name)?;
+    let pattern_file = get_pattern_file(&args.pattern)?;
     let patterns = load_patterns(&pattern_file)?;
-    let compiled_patterns = scanner::compile_patterns(&patterns.patterns)?;
+
+    // Filter patterns based on confidence level
+    let filtered_patterns: Vec<_> = patterns
+        .patterns
+        .into_iter()
+        .filter(|p| p.pattern.confidence.eq_ignore_ascii_case(&args.confidence))
+        .collect();
+
+    if filtered_patterns.is_empty() {
+        eprintln!(
+            "No patterns found with confidence level: {}",
+            args.confidence
+        );
+        return Ok(());
+    }
+
+    let compiled_patterns = scanner::compile_patterns(&filtered_patterns)?;
     println!("Compiled {} patterns", compiled_patterns.len());
 
     let files_to_scan = get_files_to_scan(&args.input)?;
