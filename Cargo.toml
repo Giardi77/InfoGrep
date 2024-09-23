@@ -19,6 +19,7 @@ dirs = "5.0"
 regex = "1.10.6"
 rayon = "1.10.0"
 colored = "2.0"
+reqwest = "0.12.7"
 
 [[bin]]
 name = "infogrep"
