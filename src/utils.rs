@@ -71,7 +71,7 @@ pub fn create_default_config() -> Result<(), Box<dyn Error>> {
 pub fn get_pattern_file(pattern: &str) -> Result<String, Box<dyn std::error::Error>> {
     let config_dir = dirs::home_dir()
         .ok_or("Could not find home directory")?
-        .join(".config")
+        .join(".config/infogrep")
         .join("infogrep.patterns.json");
 
     let json_content = fs::read_to_string(config_dir)?;
