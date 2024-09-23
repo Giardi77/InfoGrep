@@ -1,6 +1,6 @@
+use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use std::error::Error;
 use std::fs;
 use std::path::PathBuf;
 
@@ -11,9 +11,9 @@ pub struct PatternConfig {
     gitleaks: String,
 }
 
-pub fn create_default_config() -> Result<(), Box<dyn Error>> {
+pub fn create_default_config() -> Result<()> {
     let config_dir = dirs::home_dir()
-        .ok_or("Could not find home directory")?
+        .context("Could not find home directory")?
         .join(".config/infogrep");
     let config_file = config_dir.join("infogrep.patterns.json");
 
@@ -24,43 +24,34 @@ pub fn create_default_config() -> Result<(), Box<dyn Error>> {
             gitleaks: "default-patterns/gitleaks.yml".to_string(),
         };
 
-        fs::create_dir_all(&config_dir)?;
-        let config_content = serde_json::to_string_pretty(&default_config)?;
-        fs::write(config_file.clone(), config_content)?;
+        fs::create_dir_all(&config_dir)
+            .with_context(|| format!("Failed to create config directory: {:?}", config_dir))?;
+        let config_content = serde_json::to_string_pretty(&default_config)
+            .context("Failed to serialize default config")?;
+        fs::write(&config_file, config_content)
+            .with_context(|| format!("Failed to write config file: {:?}", config_file))?;
         println!("Default config file created at {:?}", config_file);
     }
 
     let default_patterns = vec!["rules-stable.yml", "pii-stable.yml", "gitleaks.yml"];
+    let patterns_dir = config_dir.join("default-patterns");
+
+    // Ensure the default-patterns directory exists
+    fs::create_dir_all(&patterns_dir)
+        .with_context(|| format!("Failed to create patterns directory: {:?}", patterns_dir))?;
 
     for pattern in default_patterns {
-        let pattern_path = config_dir.join(format!("default-patterns/{}", pattern));
+        let pattern_path = patterns_dir.join(pattern);
         if !pattern_path.exists() {
             println!("Downloading missing default pattern {} ...", pattern);
             let url = format!("https://raw.githubusercontent.com/Giardi77/InfoGrep/refs/heads/Version-3-Rust/default-patterns/{}", pattern);
-            let response = reqwest::blocking::get(&url).map_err(|e| {
-                eprintln!("Failed to fetch URL {}: {}", url, e);
-                e
-            })?;
-            let content = response.text().map_err(|e| {
-                eprintln!("Failed to read response text from URL {}: {}", url, e);
-                e
-            })?;
-            fs::create_dir_all(pattern_path.parent().unwrap()).map_err(|e| {
-                eprintln!(
-                    "Failed to create directory for pattern path {}: {}",
-                    pattern_path.display(),
-                    e
-                );
-                e
-            })?;
-            fs::write(&pattern_path, content).map_err(|e| {
-                eprintln!(
-                    "Failed to write pattern file {}: {}",
-                    pattern_path.display(),
-                    e
-                );
-                e
-            })?;
+            let response = reqwest::blocking::get(&url)
+                .with_context(|| format!("Failed to fetch URL: {}", url))?;
+            let content = response
+                .text()
+                .with_context(|| format!("Failed to read response text from URL: {}", url))?;
+            fs::write(&pattern_path, content)
+                .with_context(|| format!("Failed to write pattern file: {:?}", pattern_path))?;
             println!("Downloaded and saved pattern file: {}", pattern);
         }
     }
@@ -68,19 +59,25 @@ pub fn create_default_config() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn get_pattern_file(pattern: &str) -> Result<String, Box<dyn std::error::Error>> {
+pub fn get_pattern_file(pattern: &str) -> Result<String> {
     let config_dir = dirs::home_dir()
-        .ok_or("Could not find home directory")?
-        .join(".config/infogrep")
-        .join("infogrep.patterns.json");
+        .context("Could not find home directory")?
+        .join(".config/infogrep");
+    let config_file = config_dir.join("infogrep.patterns.json");
 
-    let json_content = fs::read_to_string(config_dir)?;
-    let json: Value = serde_json::from_str(&json_content)?;
+    let json_content = fs::read_to_string(&config_file)
+        .with_context(|| format!("Failed to read config file: {:?}", config_file))?;
+    let json: Value =
+        serde_json::from_str(&json_content).context("Failed to parse config file as JSON")?;
 
-    json.get(pattern)
+    let relative_path = json
+        .get(pattern)
         .and_then(Value::as_str)
         .map(String::from)
-        .ok_or_else(|| format!("Pattern '{}' not found in config file", pattern).into())
+        .ok_or_else(|| anyhow::anyhow!("Pattern '{}' not found in config file", pattern))?;
+
+    let full_path = config_dir.join(relative_path);
+    Ok(full_path.to_string_lossy().to_string())
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -100,19 +97,24 @@ pub struct Patterns {
     pub patterns: Vec<Pattern>,
 }
 
-pub fn load_patterns(file_path: &str) -> Result<Patterns, Box<dyn Error>> {
-    let yaml_content = fs::read_to_string(file_path)?;
-    let patterns: Patterns = serde_yaml::from_str(&yaml_content)?;
+pub fn load_patterns(file_path: &str) -> Result<Patterns> {
+    let yaml_content = fs::read_to_string(file_path)
+        .with_context(|| format!("Failed to read pattern file: {}", file_path))?;
+    let patterns: Patterns = serde_yaml::from_str(&yaml_content)
+        .with_context(|| format!("Failed to parse pattern file as YAML: {}", file_path))?;
     Ok(patterns)
 }
 
-pub fn get_files_to_scan(input: &str) -> Result<Vec<PathBuf>, Box<dyn Error>> {
-    let path = fs::canonicalize(input)?;
+pub fn get_files_to_scan(input: &str) -> Result<Vec<PathBuf>> {
+    let path = fs::canonicalize(input)
+        .with_context(|| format!("Failed to canonicalize input path: {}", input))?;
     if path.is_file() {
         Ok(vec![path])
     } else if path.is_dir() {
         let mut files = Vec::new();
-        for entry in fs::read_dir(path)? {
+        for entry in
+            fs::read_dir(path).with_context(|| format!("Failed to read directory: {}", input))?
+        {
             let entry = entry?;
             let path = entry.path();
             if path.is_file() {
@@ -121,7 +123,10 @@ pub fn get_files_to_scan(input: &str) -> Result<Vec<PathBuf>, Box<dyn Error>> {
         }
         Ok(files)
     } else {
-        Err(format!("'{}' is neither a file nor a directory", input).into())
+        Err(anyhow::anyhow!(
+            "'{}' is neither a file nor a directory",
+            input
+        ))
     }
 }
 

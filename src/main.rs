@@ -16,7 +16,7 @@ struct Args {
 
     /// Pattern to use
     #[arg(short, long, value_name = "PATTERN", default_value = "secrets")]
-    pattern: String,
+    pattern_name: String,
 
     /// Truncate output to this many characters
     #[arg(short, long, value_name = "TRUNCATE", default_value = "400")]
@@ -36,7 +36,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Start the timer
     let start = Instant::now();
 
-    let pattern_file = get_pattern_file(&args.pattern)?;
+    let pattern_file = get_pattern_file(&args.pattern_name)?;
     let patterns = load_patterns(&pattern_file)?;
     let compiled_patterns = scanner::compile_patterns(&patterns.patterns)?;
     println!("Compiled {} patterns", compiled_patterns.len());

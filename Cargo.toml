@@ -11,6 +11,7 @@ keywords = ["security", "bug-bounty", "api", "password", "leaks"]
 categories = ["command-line-utilities"]
 
 [dependencies]
+anyhow = "1.0.89"
 clap = { version = "4.0", features = ["derive"] }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
