@@ -9,7 +9,7 @@ use utils::{
 };
 
 #[derive(Parser, Debug)]
-#[command(name = "InfoGrep", about = "Grep for sensitive info", long_about = None, version = clap::crate_version!())]
+#[command(name = "InfoGrep", about = "Grep for sensitive info", long_about = None, version = env!("CARGO_PKG_VERSION"))]
 struct Args {
     /// Input file or directory
     #[arg(short, long, value_name = "INPUT")]
