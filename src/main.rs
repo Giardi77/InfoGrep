@@ -27,9 +27,9 @@ struct Args {
     #[arg(short, long, value_name = "WORKERS", default_value = "2")]
     workers: usize,
 
-    /// Confidence level to use
-    #[arg(short, long, value_name = "CONFIDENCE", default_value = "medium")]
-    confidence: String,
+    /// Confidence level to use (low, medium, high)
+    #[arg(short, long, value_name = "CONFIDENCE")]
+    confidence: Option<String>,
 }
 
 fn main() -> Result<()> {
@@ -46,16 +46,20 @@ fn main() -> Result<()> {
     let pattern_file = get_pattern_file(&args.pattern)?;
     let patterns = load_patterns(&pattern_file)?;
 
-    // Filter patterns based on confidence level
-    let filtered_patterns: Vec<_> = patterns
-        .patterns
-        .into_iter()
-        .filter(|p| p.pattern.confidence.eq_ignore_ascii_case(&args.confidence))
-        .collect();
+    // Filter patterns based on confidence level if provided
+    let filtered_patterns: Vec<_> = if let Some(confidence) = &args.confidence {
+        patterns
+            .patterns
+            .into_iter()
+            .filter(|p| p.pattern.confidence.eq_ignore_ascii_case(confidence))
+            .collect()
+    } else {
+        patterns.patterns
+    };
 
     if filtered_patterns.is_empty() {
         eprintln!(
-            "No patterns found with confidence level: {}",
+            "No patterns found with confidence level: {:?}",
             args.confidence
         );
         return Ok(());
