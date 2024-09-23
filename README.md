@@ -18,11 +18,7 @@
 
 # Installation
 
-    pip install git+https://github.com/Giardi77/infogrep.git --user
-
-### Uninstall
-
-    pip uninstall infogrep
+    cargo install infogrep
 
 # Usage
 
