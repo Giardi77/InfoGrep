@@ -1,6 +1,6 @@
 [package]
 name = "infogrep"
-version = "3.0.0"
+version = "3.0.1"
 authors = ["Giardi (@Giardi_nah on X)"]
 edition = "2021"
 description = "A tool to grep for sensitive information"
