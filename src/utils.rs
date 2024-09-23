@@ -4,6 +4,35 @@ use std::error::Error;
 use std::fs;
 use std::path::PathBuf;
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PatternConfig {
+    secrets: String,
+    pii: String,
+    gitleaks: String,
+}
+
+pub fn create_default_config() -> Result<(), Box<dyn Error>> {
+    let config_dir = dirs::home_dir()
+        .ok_or("Could not find home directory")?
+        .join(".config");
+    let config_file = config_dir.join("infogrep.patterns.json");
+
+    if !config_file.exists() {
+        let default_config = PatternConfig {
+            secrets: "default-patterns/rules-stable.yml".to_string(),
+            pii: "default-patterns/pii-stable.yml".to_string(),
+            gitleaks: "default-patterns/gitleaks.yml".to_string(),
+        };
+
+        fs::create_dir_all(&config_dir)?;
+        let config_content = serde_json::to_string_pretty(&default_config)?;
+        fs::write(config_file, config_content)?;
+        println!("Default config file created at {:?}", config_file);
+    }
+
+    Ok(())
+}
+
 pub fn get_pattern_file(pattern: &str) -> Result<String, Box<dyn std::error::Error>> {
     let config_dir = dirs::home_dir()
         .ok_or("Could not find home directory")?

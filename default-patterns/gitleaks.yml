@@ -1,0 +1,712 @@
+patterns:
+- pattern:
+    name: adafruit-api-key
+    regex: (?i)(?:adafruit)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: adobe-client-id
+    regex: (?i)(?:adobe)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: adobe-client-secret
+    regex: (?i)\b((p8e-)(?i)[a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: age-secret-key
+    regex: AGE-SECRET-KEY-1[QPZRY9X8GF2TVDW0S3JN54KHCE6MUA7L]{58}
+    confidence: high
+- pattern:
+    name: airtable-api-key
+    regex: (?i)(?:airtable)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{17})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: algolia-api-key
+    regex: (?i)(?:algolia)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: alibaba-access-key-id
+    regex: (?i)\b((LTAI)(?i)[a-z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: alibaba-secret-key
+    regex: (?i)(?:alibaba)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{30})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: asana-client-id
+    regex: (?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: asana-client-secret
+    regex: (?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: atlassian-api-token
+    regex: (?i)(?:atlassian|confluence|jira)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: authress-service-client-access-key
+    regex: (?i)\b((?:sc|ext|scauth|authress)_[a-z0-9]{5,30}\.[a-z0-9]{4,6}\.acc[_-][a-z0-9-]{10,32}\.[a-z0-9+/_=-]{30,120})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: aws-access-token
+    regex: (?:A3T[A-Z0-9]|AKIA|ASIA|ABIA|ACCA)[A-Z0-9]{16}
+    confidence: high
+- pattern:
+    name: beamer-api-token
+    regex: (?i)(?:beamer)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(b_[a-z0-9=_\-]{44})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: bitbucket-client-id
+    regex: (?i)(?:bitbucket)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: bitbucket-client-secret
+    regex: (?i)(?:bitbucket)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: bittrex-access-key
+    regex: (?i)(?:bittrex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: bittrex-secret-key
+    regex: (?i)(?:bittrex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: clojars-api-token
+    regex: (?i)CLOJARS_[a-z0-9]{60}
+    confidence: high
+- pattern:
+    name: cloudflare-api-key
+    regex: (?i)(?:cloudflare)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: cloudflare-global-api-key
+    regex: (?i)(?:cloudflare)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{37})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: cloudflare-origin-ca-key
+    regex: \b(v1\.0-[a-f0-9]{24}-[a-f0-9]{146})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: codecov-access-token
+    regex: (?i)(?:codecov)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: coinbase-access-token
+    regex: (?i)(?:coinbase)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: confluent-access-token
+    regex: (?i)(?:confluent)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: confluent-secret-key
+    regex: (?i)(?:confluent)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: contentful-delivery-api-token
+    regex: (?i)(?:contentful)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{43})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: databricks-api-token
+    regex: (?i)\b(dapi[a-h0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: datadog-access-token
+    regex: (?i)(?:datadog)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: defined-networking-api-token
+    regex: (?i)(?:dnkey)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(dnkey-[a-z0-9=_\-]{26}-[a-z0-9=_\-]{52})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: digitalocean-access-token
+    regex: (?i)\b(doo_v1_[a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: digitalocean-pat
+    regex: (?i)\b(dop_v1_[a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: digitalocean-refresh-token
+    regex: (?i)\b(dor_v1_[a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: discord-api-token
+    regex: (?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: discord-client-id
+    regex: (?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9]{18})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: discord-client-secret
+    regex: (?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: doppler-api-token
+    regex: dp\.pt\.(?i)[a-z0-9]{43}
+    confidence: high
+- pattern:
+    name: droneci-access-token
+    regex: (?i)(?:droneci)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: dropbox-api-token
+    regex: (?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{15})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: dropbox-long-lived-api-token
+    regex: (?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{11}(AAAAAAAAAA)[a-z0-9\-_=]{43})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: dropbox-short-lived-api-token
+    regex: (?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(sl\.[a-z0-9\-=_]{135})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: duffel-api-token
+    regex: duffel_(?:test|live)_(?i)[a-z0-9_\-=]{43}
+    confidence: high
+- pattern:
+    name: dynatrace-api-token
+    regex: dt0c01\.(?i)[a-z0-9]{24}\.[a-z0-9]{64}
+    confidence: high
+- pattern:
+    name: easypost-api-token
+    regex: \bEZAK(?i)[a-z0-9]{54}
+    confidence: high
+- pattern:
+    name: easypost-test-api-token
+    regex: \bEZTK(?i)[a-z0-9]{54}
+    confidence: high
+- pattern:
+    name: etsy-access-token
+    regex: (?i)(?:(?-i:ETSY|etsy|Etsy))(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: facebook-access-token
+    regex: (?i)\b(\d{15,16}(\||%)[0-9a-z\-_]{27,40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: facebook-page-access-token
+    regex: (?i)\b(EAA[MC][a-z0-9]{20,})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: facebook-secret
+    regex: (?i)(?:facebook)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: fastly-api-token
+    regex: (?i)(?:fastly)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: finicity-api-token
+    regex: (?i)(?:finicity)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: finicity-client-secret
+    regex: (?i)(?:finicity)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: finnhub-access-token
+    regex: (?i)(?:finnhub)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: flickr-access-token
+    regex: (?i)(?:flickr)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: flutterwave-encryption-key
+    regex: FLWSECK_TEST-(?i)[a-h0-9]{12}
+    confidence: high
+- pattern:
+    name: flutterwave-public-key
+    regex: FLWPUBK_TEST-(?i)[a-h0-9]{32}-X
+    confidence: high
+- pattern:
+    name: flutterwave-secret-key
+    regex: FLWSECK_TEST-(?i)[a-h0-9]{32}-X
+    confidence: high
+- pattern:
+    name: frameio-api-token
+    regex: fio-u-(?i)[a-z0-9\-_=]{64}
+    confidence: high
+- pattern:
+    name: freshbooks-access-token
+    regex: (?i)(?:freshbooks)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: gcp-api-key
+    regex: \b(AIza[\w-]{35})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: generic-api-key
+    regex: (?i)(?:key|api|token|secret|client|passwd|password|auth|access)(?:[0-9a-z\-_\t
+      .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-z\-_.=]{10,150})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: github-app-token
+    regex: (?:ghu|ghs)_[0-9a-zA-Z]{36}
+    confidence: high
+- pattern:
+    name: github-fine-grained-pat
+    regex: github_pat_\w{82}
+    confidence: high
+- pattern:
+    name: github-oauth
+    regex: gho_[0-9a-zA-Z]{36}
+    confidence: high
+- pattern:
+    name: github-pat
+    regex: ghp_[0-9a-zA-Z]{36}
+    confidence: high
+- pattern:
+    name: github-refresh-token
+    regex: ghr_[0-9a-zA-Z]{36}
+    confidence: high
+- pattern:
+    name: gitlab-pat
+    regex: glpat-[0-9a-zA-Z\-\_]{20}
+    confidence: high
+- pattern:
+    name: gitlab-ptt
+    regex: glptt-[0-9a-f]{40}
+    confidence: high
+- pattern:
+    name: gitlab-rrt
+    regex: GR1348941[0-9a-zA-Z\-\_]{20}
+    confidence: high
+- pattern:
+    name: gitter-access-token
+    regex: (?i)(?:gitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: gocardless-api-token
+    regex: (?i)(?:gocardless)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(live_(?i)[a-z0-9\-_=]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: grafana-api-key
+    regex: (?i)\b(eyJrIjoi[A-Za-z0-9]{70,400}={0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: grafana-cloud-api-token
+    regex: (?i)\b(glc_[A-Za-z0-9+/]{32,400}={0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: grafana-service-account-token
+    regex: (?i)\b(glsa_[A-Za-z0-9]{32}_[A-Fa-f0-9]{8})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: harness-api-key
+    regex: (?:pat|sat)\.[a-zA-Z0-9_-]{22}\.[a-zA-Z0-9]{24}\.[a-zA-Z0-9]{20}
+    confidence: high
+- pattern:
+    name: hashicorp-tf-api-token
+    regex: (?i)[a-z0-9]{14}\.(?-i:atlasv1)\.[a-z0-9\-_=]{60,70}
+    confidence: high
+- pattern:
+    name: hashicorp-tf-password
+    regex: (?i)(?:administrator_login_password|password)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}("[a-z0-9=_\-]{8,20}")(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: heroku-api-key
+    regex: (?i)(?:heroku)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: hubspot-api-key
+    regex: (?i)(?:hubspot)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: huggingface-access-token
+    regex: (?:^|[\\'"` >=:])(hf_[a-zA-Z]{34})(?:$|[\\'"` <])
+    confidence: high
+- pattern:
+    name: huggingface-organization-api-token
+    regex: (?:^|[\\'"` >=:\(,)])(api_org_[a-zA-Z]{34})(?:$|[\\'"` <\),])
+    confidence: high
+- pattern:
+    name: infracost-api-token
+    regex: (?i)\b(ico-[a-zA-Z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: intercom-api-key
+    regex: (?i)(?:intercom)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{60})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: intra42-client-secret
+    regex: (?i)\b(s-s4t2(?:ud|af)-[abcdef0123456789]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: jfrog-api-key
+    regex: (?i)(?:jfrog|artifactory|bintray|xray)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{73})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: jfrog-identity-token
+    regex: (?i)(?:jfrog|artifactory|bintray|xray)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: jwt
+    regex: \b(ey[a-zA-Z0-9]{17,}\.ey[a-zA-Z0-9\/\\_-]{17,}\.(?:[a-zA-Z0-9\/\\_-]{10,}={0,2})?)(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: jwt-base64
+    regex: \bZXlK(?:(?P<alg>aGJHY2lPaU)|(?P<apu>aGNIVWlPaU)|(?P<apv>aGNIWWlPaU)|(?P<aud>aGRXUWlPaU)|(?P<b64>aU5qUWlP)|(?P<crit>amNtbDBJanBi)|(?P<cty>amRIa2lPaU)|(?P<epk>bGNHc2lPbn)|(?P<enc>bGJtTWlPaU)|(?P<jku>cWEzVWlPaU)|(?P<jwk>cWQyc2lPb)|(?P<iss>cGMzTWlPaU)|(?P<iv>cGRpSTZJ)|(?P<kid>cmFXUWlP)|(?P<key_ops>clpYbGZiM0J6SWpwY)|(?P<kty>cmRIa2lPaUp)|(?P<nonce>dWIyNWpaU0k2)|(?P<p2c>d01tTWlP)|(?P<p2s>d01uTWlPaU)|(?P<ppt>d2NIUWlPaU)|(?P<sub>emRXSWlPaU)|(?P<svt>emRuUWlP)|(?P<tag>MFlXY2lPaU)|(?P<typ>MGVYQWlPaUp)|(?P<url>MWNtd2l)|(?P<use>MWMyVWlPaUp)|(?P<ver>MlpYSWlPaU)|(?P<version>MlpYSnphVzl1SWpv)|(?P<x>NElqb2)|(?P<x5c>NE5XTWlP)|(?P<x5t>NE5YUWlPaU)|(?P<x5ts256>NE5YUWpVekkxTmlJNkl)|(?P<x5u>NE5YVWlPaU)|(?P<zip>NmFYQWlPaU))[a-zA-Z0-9\/\\_+\-\r\n]{40,}={0,2}
+    confidence: high
+- pattern:
+    name: kraken-access-token
+    regex: (?i)(?:kraken)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9\/=_\+\-]{80,90})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: kubernetes-secret-yaml
+    regex: (?i)(?:\bkind:[ \t]*["']?secret["']?(?:.|\s){0,200}?\bdata:(?:.|\s){0,100}?\s+([\w.-]+:(?:[
+      \t]*(?:\||>[-+]?)\s+)?[ \t]*(?:["']?[a-z0-9]{10,}={0,3}["']?|\{\{[ \t\w.-]+}}|""|''))|\bdata:(?:.|\s){0,100}?\s+([\w.-]+:(?:[
+      \t]*(?:\||>[-+]?)\s+)?[ \t]*(?:["']?[a-z0-9]{10,}={0,3}["']?|\{\{[ \t\w.-]+}}|""|''))(?:.|\s){0,200}?\bkind:[
+      \t]*["']?secret["']?)
+    confidence: high
+- pattern:
+    name: kucoin-access-token
+    regex: (?i)(?:kucoin)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: kucoin-secret-key
+    regex: (?i)(?:kucoin)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: launchdarkly-access-token
+    regex: (?i)(?:launchdarkly)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: linear-api-key
+    regex: lin_api_(?i)[a-z0-9]{40}
+    confidence: high
+- pattern:
+    name: linear-client-secret
+    regex: (?i)(?:linear)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: linkedin-client-id
+    regex: (?i)(?:linkedin|linked-in)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{14})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: linkedin-client-secret
+    regex: (?i)(?:linkedin|linked-in)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: lob-api-key
+    regex: (?i)(?:lob)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}((live|test)_[a-f0-9]{35})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: lob-pub-api-key
+    regex: (?i)(?:lob)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}((test|live)_pub_[a-f0-9]{31})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: mailchimp-api-key
+    regex: (?i)(?:MailchimpSDK.initialize|mailchimp)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32}-us\d\d)(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: mailgun-private-api-token
+    regex: (?i)(?:mailgun)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(key-[a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: mailgun-pub-key
+    regex: (?i)(?:mailgun)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(pubkey-[a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: mailgun-signing-key
+    regex: (?i)(?:mailgun)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-h0-9]{32}-[a-h0-9]{8}-[a-h0-9]{8})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: mapbox-api-token
+    regex: (?i)(?:mapbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(pk\.[a-z0-9]{60}\.[a-z0-9]{22})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: mattermost-access-token
+    regex: (?i)(?:mattermost)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{26})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: messagebird-api-token
+    regex: (?i)(?:messagebird|message-bird|message_bird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{25})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: messagebird-client-id
+    regex: (?i)(?:messagebird|message-bird|message_bird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: microsoft-teams-webhook
+    regex: https:\/\/[a-z0-9]+\.webhook\.office\.com\/webhookb2\/[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}@[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}\/IncomingWebhook\/[a-z0-9]{32}\/[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}
+    confidence: high
+- pattern:
+    name: netlify-access-token
+    regex: (?i)(?:netlify)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{40,46})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: new-relic-browser-api-token
+    regex: (?i)(?:new-relic|newrelic|new_relic)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(NRJS-[a-f0-9]{19})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: new-relic-insert-key
+    regex: (?i)(?:new-relic|newrelic|new_relic)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(NRII-[a-z0-9-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: new-relic-user-api-id
+    regex: (?i)(?:new-relic|newrelic|new_relic)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: new-relic-user-api-key
+    regex: (?i)(?:new-relic|newrelic|new_relic)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(NRAK-[a-z0-9]{27})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: npm-access-token
+    regex: (?i)\b(npm_[a-z0-9]{36})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: nytimes-access-token
+    regex: (?i)(?:nytimes|new-york-times,|newyorktimes)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: okta-access-token
+    regex: (?i)(?:okta)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{42})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: openai-api-key
+    regex: (?i)\b(sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: openshift-user-token
+    regex: \b(sha256~[\w-]{43})(?:[^\w-]|\z)
+    confidence: high
+- pattern:
+    name: plaid-api-token
+    regex: (?i)(?:plaid)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(access-(?:sandbox|development|production)-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: plaid-client-id
+    regex: (?i)(?:plaid)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: plaid-secret-key
+    regex: (?i)(?:plaid)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{30})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: planetscale-api-token
+    regex: (?i)\b(pscale_tkn_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: planetscale-oauth-token
+    regex: (?i)\b(pscale_oauth_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: planetscale-password
+    regex: (?i)\b(pscale_pw_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: postman-api-token
+    regex: (?i)\b(PMAK-(?i)[a-f0-9]{24}\-[a-f0-9]{34})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: prefect-api-token
+    regex: (?i)\b(pnu_[a-z0-9]{36})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: private-key
+    regex: '(?i)-----BEGIN[ A-Z0-9_-]{0,100}PRIVATE KEY(?: BLOCK)?-----[\s\S-]*KEY(?:
+      BLOCK)?----'
+    confidence: high
+- pattern:
+    name: pulumi-api-token
+    regex: (?i)\b(pul-[a-f0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: pypi-upload-token
+    regex: pypi-AgEIcHlwaS5vcmc[A-Za-z0-9\-_]{50,1000}
+    confidence: high
+- pattern:
+    name: rapidapi-access-token
+    regex: (?i)(?:rapidapi)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{50})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: readme-api-token
+    regex: (?i)\b(rdme_[a-z0-9]{70})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: rubygems-api-token
+    regex: (?i)\b(rubygems_[a-f0-9]{48})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: scalingo-api-token
+    regex: \b(tk-us-[a-zA-Z0-9-_]{48})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sendbird-access-id
+    regex: (?i)(?:sendbird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sendbird-access-token
+    regex: (?i)(?:sendbird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sendgrid-api-token
+    regex: (?i)\b(SG\.(?i)[a-z0-9=_\-\.]{66})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sendinblue-api-token
+    regex: (?i)\b(xkeysib-[a-f0-9]{64}\-(?i)[a-z0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sentry-access-token
+    regex: (?i)(?:sentry)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: shippo-api-token
+    regex: (?i)\b(shippo_(live|test)_[a-f0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: shopify-access-token
+    regex: shpat_[a-fA-F0-9]{32}
+    confidence: high
+- pattern:
+    name: shopify-custom-access-token
+    regex: shpca_[a-fA-F0-9]{32}
+    confidence: high
+- pattern:
+    name: shopify-private-app-access-token
+    regex: shppa_[a-fA-F0-9]{32}
+    confidence: high
+- pattern:
+    name: shopify-shared-secret
+    regex: shpss_[a-fA-F0-9]{32}
+    confidence: high
+- pattern:
+    name: sidekiq-secret
+    regex: (?i)(?:BUNDLE_ENTERPRISE__CONTRIBSYS__COM|BUNDLE_GEMS__CONTRIBSYS__COM)(?:[0-9a-z\-_\t
+      .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{8}:[a-f0-9]{8})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sidekiq-sensitive-url
+    regex: (?i)\bhttps?://([a-f0-9]{8}:[a-f0-9]{8})@(?:gems.contribsys.com|enterprise.contribsys.com)(?:[\/|\#|\?|:]|$)
+    confidence: high
+- pattern:
+    name: slack-app-token
+    regex: (?i)xapp-\d-[A-Z0-9]+-\d+-[a-z0-9]+
+    confidence: high
+- pattern:
+    name: slack-bot-token
+    regex: (xoxb-[0-9]{10,13}\-[0-9]{10,13}[a-zA-Z0-9-]*)
+    confidence: high
+- pattern:
+    name: slack-config-access-token
+    regex: (?i)xoxe.xox[bp]-\d-[A-Z0-9]{163,166}
+    confidence: high
+- pattern:
+    name: slack-config-refresh-token
+    regex: (?i)xoxe-\d-[A-Z0-9]{146}
+    confidence: high
+- pattern:
+    name: slack-legacy-bot-token
+    regex: (xoxb-[0-9]{8,14}\-[a-zA-Z0-9]{18,26})
+    confidence: high
+- pattern:
+    name: slack-legacy-token
+    regex: xox[os]-\d+-\d+-\d+-[a-fA-F\d]+
+    confidence: high
+- pattern:
+    name: slack-legacy-workspace-token
+    regex: (xox[ar]-(?:\d-)?[0-9a-zA-Z]{8,48})
+    confidence: high
+- pattern:
+    name: slack-user-token
+    regex: xox[pe](?:-[0-9]{10,13}){3}-[a-zA-Z0-9-]{28,34}
+    confidence: high
+- pattern:
+    name: slack-webhook-url
+    regex: (https?:\/\/)?hooks.slack.com\/(services|workflows)\/[A-Za-z0-9+\/]{43,46}
+    confidence: high
+- pattern:
+    name: snyk-api-token
+    regex: (?i)(?:snyk_token|snyk_key|snyk_api_token|snyk_api_key|snyk_oauth_token)(?:[0-9a-z\-_\t
+      .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: square-access-token
+    regex: \b((?:EAAA|sq0atp-)[\w-]{22,60})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: squarespace-access-token
+    regex: (?i)(?:squarespace)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: stripe-access-token
+    regex: (?i)\b((sk|rk)_(test|live|prod)_[0-9a-z]{10,99})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sumologic-access-id
+    regex: (?i:(?:sumo)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3})(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(su[a-zA-Z0-9]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: sumologic-access-token
+    regex: (?i)(?:sumo)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: telegram-bot-api-token
+    regex: (?i:telegr(?:[0-9a-z\(-_\t .\\]{0,40})(?:[\s|']|[\s|"]){0,3})(?:=|\|\|:|<=|=>|:|\?=|\()(?:'|\"|\s|=|\x60){0,5}([0-9]{5,16}:A[a-z0-9_\-]{34})(?:['|\"|\n|\r|\s|\x60|;|\\]|$)
+    confidence: high
+- pattern:
+    name: travisci-access-token
+    regex: (?i)(?:travis)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{22})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: twilio-api-key
+    regex: SK[0-9a-fA-F]{32}
+    confidence: high
+- pattern:
+    name: twitch-api-token
+    regex: (?i)(?:twitch)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{30})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: twitter-access-secret
+    regex: (?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{45})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: twitter-access-token
+    regex: (?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9]{15,25}-[a-zA-Z0-9]{20,40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: twitter-api-key
+    regex: (?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{25})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: twitter-api-secret
+    regex: (?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{50})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: twitter-bearer-token
+    regex: (?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(A{22}[a-zA-Z0-9%]{80,100})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: typeform-api-token
+    regex: (?i)(?:typeform)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(tfp_[a-z0-9\-_\.=]{59})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: vault-batch-token
+    regex: (?i)\b(hvb\.[a-z0-9_-]{138,212})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: vault-service-token
+    regex: \b((?:hvs\.[\w-]{90,120}|s\.(?i:[a-z0-9]{24})))(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: yandex-access-token
+    regex: (?i)(?:yandex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(t1\.[A-Z0-9a-z_-]+[=]{0,2}\.[A-Z0-9a-z_-]{86}[=]{0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: yandex-api-key
+    regex: (?i)(?:yandex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(AQVN[A-Za-z0-9_\-]{35,38})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: yandex-aws-access-token
+    regex: (?i)(?:yandex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(YC[a-zA-Z0-9_\-]{38})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
+- pattern:
+    name: zendesk-secret-key
+    regex: (?i)(?:zendesk)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)
+    confidence: high
