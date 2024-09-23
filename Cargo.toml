@@ -7,7 +7,7 @@ description = "A tool to grep for sensitive information"
 license = "MIT"
 repository = "https://github.com/Giardi77/InfoGrep"
 readme = "README.md"
-keywords = ["grep", "sensitive", "information", "security", "api", "cli", "security-tools", "bug-bounty", "pentesting", "security-researcher", "password", "leaks"]
+keywords = ["security", "bug-bounty", "api", "password", "leaks"]
 categories = ["command-line-utilities"]
 
 [dependencies]
