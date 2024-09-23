@@ -1,12 +1,10 @@
 [package]
 name = "infogrep"
 version = "3.0.0"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Giardi (@Giardi_nah on X)"]
 edition = "2021"
 description = "A tool to grep for sensitive information"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/yourusername/infogrep"
-homepage = "https://github.com/yourusername/infogrep"
+repository = "https://github.com/Giardi77/InfoGrep"
 readme = "README.md"
 keywords = ["grep", "sensitive", "information", "security", "api", "cli", "security-tools", "bug-bounty", "pentesting", "security-researcher", "password", "leaks"]
 categories = ["command-line-utilities"]
