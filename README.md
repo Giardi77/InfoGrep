@@ -40,13 +40,7 @@ Scan a directory:
 
     infogrep -i my_dir
 
-Scan content from a pipe:
-
-    cat file.js | infogrep
-
-Add a custom pattern
-
-    infogrep -a mypattern:/path/to/my_patterns.yaml
+Add a custom pattern in ~/.config/infogrep.patterns.json with "name" : "/path/to/yaml.yml"
 
 Scan with a custom pattern:
 
