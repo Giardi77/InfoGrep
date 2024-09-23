@@ -14,11 +14,13 @@
 
 - Grep ***files*** or ***directories*** for ****sensitive information**** using predefined patterns.
 - Add custom patterns in YAML format.
+- Parallel processing
+- Get uniq results across multiple files
 
 
 # Installation
 
-    cargo install infogrep
+    cargo install --git https://github.com/Giardi77/InfoGrep
 
 # Usage
 
@@ -45,6 +47,10 @@ Scan with a custom pattern:
 Some regex might suck and match a lot of shit, you can use -t flag to truncate the output and see more results at once (default is 400 chars, if you want to see the whole thing set -t 0):
 
     infogrep -i my_dir -t 1000
+
+Be **ULTRA** Fast:
+
+    infogrep -i directory -w 8 #(8 workers in parallel)
 
 # Contribute
 
