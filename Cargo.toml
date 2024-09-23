@@ -4,6 +4,7 @@ version = "3.0.0"
 authors = ["Giardi (@Giardi_nah on X)"]
 edition = "2021"
 description = "A tool to grep for sensitive information"
+license = "MIT"
 repository = "https://github.com/Giardi77/InfoGrep"
 readme = "README.md"
 keywords = ["grep", "sensitive", "information", "security", "api", "cli", "security-tools", "bug-bounty", "pentesting", "security-researcher", "password", "leaks"]
