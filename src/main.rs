@@ -3,34 +3,37 @@ mod scanner;
 mod utils;
 use rayon::prelude::*; // Import ParallelIterator trait
 use std::time::Instant;
-use utils::{create_default_config, get_files_to_scan, get_pattern_file, load_patterns};
+use utils::{
+    create_default_config, get_files_to_scan, get_pattern_file, load_patterns, print_logo,
+};
 
 #[derive(Parser, Debug)]
-#[command(name = "InfoGrep", about = "Grep for sensitive info", long_about = None)]
+#[command(name = "InfoGrep", about = "Grep for sensitive info", long_about = None, version = env!("CARGO_PKG_VERSION"))]
 struct Args {
-    /// Input file or directory (Required)
+    /// Input file or directory
     #[arg(short, long, value_name = "INPUT")]
     input: String,
 
-    /// Pattern to use (Default: secrets)
+    /// Pattern to use
     #[arg(short, long, value_name = "PATTERN", default_value = "secrets")]
     pattern: String,
 
-    /// Truncate output to this many characters (Default: 400)
+    /// Truncate output to this many characters
     #[arg(short, long, value_name = "TRUNCATE", default_value = "400")]
     truncate: usize,
 
-    /// Number of worker threads to use (Deafult: 2)
+    /// Number of worker threads to use
     #[arg(short, long, value_name = "WORKERS", default_value = "2")]
     workers: usize,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Args::parse();
+    print_logo();
 
-    // Create default config file if it doesn't exist
     create_default_config()?;
 
+    // Start the timer
     let start = Instant::now();
 
     let pattern_file = get_pattern_file(&args.pattern)?;
@@ -40,6 +43,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let files_to_scan = get_files_to_scan(&args.input)?;
 
+    // Set the number of worker threads
     rayon::ThreadPoolBuilder::new()
         .num_threads(args.workers)
         .build_global()?;
@@ -50,6 +54,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
 
+    // Stop the timer
     let duration = start.elapsed();
     println!("Time taken: {:?}", duration);
 

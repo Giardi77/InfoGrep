@@ -1,9 +1,15 @@
 [package]
 name = "infogrep"
 version = "3.0.0"
+authors = ["Your Name <your.email@example.com>"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "A tool to grep for sensitive information"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yourusername/infogrep"
+homepage = "https://github.com/yourusername/infogrep"
+readme = "README.md"
+keywords = ["grep", "sensitive", "information", "security", "api", "cli", "security-tools", "bug-bounty", "pentesting", "security-researcher", "password", "leaks"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
@@ -14,3 +20,7 @@ dirs = "5.0"
 regex = "1.10.6"
 rayon = "1.10.0"
 colored = "2.0"
+
+[[bin]]
+name = "infogrep"
+path = "src/main.rs"

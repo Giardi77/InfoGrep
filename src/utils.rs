@@ -26,7 +26,7 @@ pub fn create_default_config() -> Result<(), Box<dyn Error>> {
 
         fs::create_dir_all(&config_dir)?;
         let config_content = serde_json::to_string_pretty(&default_config)?;
-        fs::write(config_file, config_content)?;
+        fs::write(config_file.clone(), config_content)?;
         println!("Default config file created at {:?}", config_file);
     }
 
@@ -96,4 +96,17 @@ pub fn truncate_string(s: &str, max_chars: usize) -> String {
     } else {
         s.chars().take(max_chars).collect::<String>() + "..."
     }
+}
+
+pub fn print_logo() {
+    println!(
+        r#"
+  _____        __         ___                
+  \_   \_ __  / _| ___   / _ \_ __ ___ _ __  
+   / /\/ '_ \| |_ / _ \ / /_\/ '__/ _ \ '_ \ 
+/\/ /_ | | | |  _| (_) / /_\\| | |  __/ |_) |
+\____/ |_| |_|_|  \___/\____/|_|  \___| .__/ 
+                                      |_|    
+"#
+    );
 }
