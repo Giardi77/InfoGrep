@@ -14,7 +14,7 @@ pub struct PatternConfig {
 pub fn create_default_config() -> Result<(), Box<dyn Error>> {
     let config_dir = dirs::home_dir()
         .ok_or("Could not find home directory")?
-        .join(".config");
+        .join(".config/infogrep");
     let config_file = config_dir.join("infogrep.patterns.json");
 
     if !config_file.exists() {
@@ -28,6 +28,41 @@ pub fn create_default_config() -> Result<(), Box<dyn Error>> {
         let config_content = serde_json::to_string_pretty(&default_config)?;
         fs::write(config_file.clone(), config_content)?;
         println!("Default config file created at {:?}", config_file);
+    }
+
+    let default_patterns = vec!["rules-stable.yml", "pii-stable.yml", "gitleaks.yml"];
+
+    for pattern in default_patterns {
+        let pattern_path = config_dir.join(format!("default-patterns/{}", pattern));
+        if !pattern_path.exists() {
+            println!("Downloading missing default pattern {} ...", pattern);
+            let url = format!("https://raw.githubusercontent.com/Giardi77/InfoGrep/refs/heads/Version-3-Rust/default-patterns/{}", pattern);
+            let response = reqwest::blocking::get(&url).map_err(|e| {
+                eprintln!("Failed to fetch URL {}: {}", url, e);
+                e
+            })?;
+            let content = response.text().map_err(|e| {
+                eprintln!("Failed to read response text from URL {}: {}", url, e);
+                e
+            })?;
+            fs::create_dir_all(pattern_path.parent().unwrap()).map_err(|e| {
+                eprintln!(
+                    "Failed to create directory for pattern path {}: {}",
+                    pattern_path.display(),
+                    e
+                );
+                e
+            })?;
+            fs::write(&pattern_path, content).map_err(|e| {
+                eprintln!(
+                    "Failed to write pattern file {}: {}",
+                    pattern_path.display(),
+                    e
+                );
+                e
+            })?;
+            println!("Downloaded and saved pattern file: {}", pattern);
+        }
     }
 
     Ok(())
