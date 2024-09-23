@@ -1,4 +1,4 @@
-![Logo](freeze.png)
+![Logo](Logo.png)
 
 <h4 align="center">🏎️💨 Grep for sensitive info FAST! 🏎️💨</h4>
 
