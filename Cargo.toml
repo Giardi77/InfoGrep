@@ -25,3 +25,8 @@ reqwest = { version = "0.12.7", features = ["blocking"] }
 [[bin]]
 name = "infogrep"
 path = "src/main.rs"
+
+[profile.release]
+strip = true
+opt-level = 3
+lto = true
