@@ -13,7 +13,7 @@ patterns:
       confidence: high
   - pattern:
       name: street_addresses
-      regex: \d{1,4} [\w\s]{1,20}(?:street|st|avenue|ave|road|rd|highway|hwy|square|sq|trail|trl|drive|dr|court|ct|park|parkway|pkwy|circle|cir|boulevard|blvd)\W?(?=\s|$)
+      regex: \d{1,4} [\w\s]{1,20}(?:street|st|avenue|ave|road|rd|highway|hwy|square|sq|trail|trl|drive|dr|court|ct|park|parkway|pkwy|circle|cir|boulevard|blvd)\W
       confidence: high
   - pattern:
       name: po_boxes
@@ -332,30 +332,6 @@ patterns:
       regex: "https://www.dropbox.com/(?:s|l)/\\S+"
       confidence: high
   - pattern:
-      name: EC Private Key
-      regex: "-----BEGIN (?:EC|ECDSA) PRIVATE KEY-----(?:[a-zA-Z0-9\\+\\=\\/\"']|\\s)+?-----END (?:EC|ECDSA) PRIVATE KEY-----"
-      confidence: high
-  - pattern:
-      name: Encrypted DSA Private Key
-      regex: "-----BEGIN DSA PRIVATE KEY-----\\s.*,ENCRYPTED(?:.|\\s)+?-----END DSA PRIVATE KEY-----"
-      confidence: high
-  - pattern:
-      name: Encrypted EC Private Key
-      regex: "-----BEGIN (?:EC|ECDSA) PRIVATE KEY-----\\s.*,ENCRYPTED(?:.|\\s)+?-----END (?:EC|ECDSA) PRIVATE KEY-----"
-      confidence: high
-  - pattern:
-      name: Encrypted Private Key
-      regex: "-----BEGIN ENCRYPTED PRIVATE KEY-----(?:.|\\s)+?-----END ENCRYPTED PRIVATE KEY-----"
-      confidence: high
-  - pattern:
-      name: Encrypted PuTTY SSH DSA Key
-      regex: "PuTTY-User-Key-File-2: ssh-dss\\s*Encryption: aes(?:.|\\s?)*?Private-MAC:"
-      confidence: high
-  - pattern:
-      name: Encrypted RSA Private Key
-      regex: "-----BEGIN RSA PRIVATE KEY-----\\s.*,ENCRYPTED(?:.|\\s)+?-----END RSA PRIVATE KEY-----"
-      confidence: high
-  - pattern:
       name: Google Application Identifier
       regex: "[0-9]+-\\w+.apps.googleusercontent.com"
       confidence: high
@@ -420,10 +396,6 @@ patterns:
       regex: "-{5}(?:BEGIN|END)\\ PGP\\ MESSAGE-{5}"
       confidence: high
   - pattern:
-      name: PGP Private Key Block
-      regex: "-----BEGIN PGP PRIVATE KEY BLOCK-----(?:.|\\s)+?-----END PGP PRIVATE KEY BLOCK-----"
-      confidence: high
-  - pattern:
       name: PKCS7 Encrypted Data
       regex: "(?:Signer|Recipient)Info(?:s)?\\ ::=\\ \\w+|[D|d]igest(?:Encryption)?Algorithm|EncryptedKey\\ ::= \\w+"
       confidence: high
@@ -450,14 +422,6 @@ patterns:
   - pattern:
       name: Public Key Cryptography System (PKCS)
       regex: "protocol=\"application/x-pkcs[0-9]{0,2}-signature\""
-      confidence: high
-  - pattern:
-      name: Public encrypted key
-      regex: "-----BEGIN PUBLIC KEY-----(?:.|\\s)+?-----END PUBLIC KEY-----"
-      confidence: high
-  - pattern:
-      name: RSA Private Key
-      regex: "-----BEGIN RSA PRIVATE KEY-----(?:[a-zA-Z0-9\\+\\=\\/\"']|\\s)+?-----END RSA PRIVATE KEY-----"
       confidence: high
   - pattern:
       name: SSL Certificate
