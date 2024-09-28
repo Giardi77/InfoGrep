@@ -16,12 +16,25 @@ pub fn create_default_config() -> Result<()> {
         .context("Could not find home directory")?
         .join(".config/infogrep");
     let config_file = config_dir.join("infogrep.patterns.json");
+    let default_patterns_dir = config_dir.join("default-patterns");
 
     if !config_file.exists() {
         let default_config = PatternConfig {
-            secrets: "default-patterns/rules-stable.yml".to_string(),
-            pii: "default-patterns/pii-stable.yml".to_string(),
-            gitleaks: "default-patterns/gitleaks.yml".to_string(),
+            secrets: default_patterns_dir
+                .join("rules-stable.yml")
+                .to_str()
+                .unwrap()
+                .to_string(),
+            pii: default_patterns_dir
+                .join("pii-stable.yml")
+                .to_str()
+                .unwrap()
+                .to_string(),
+            gitleaks: default_patterns_dir
+                .join("gitleaks.yml")
+                .to_str()
+                .unwrap()
+                .to_string(),
         };
 
         fs::create_dir_all(&config_dir)
